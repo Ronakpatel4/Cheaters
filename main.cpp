@@ -13,7 +13,7 @@ using std::string;
 
 int main(int argc, char *argv[])
 {
-    char *fName = new char[80];
+   char *fName = new char[80];
     strcpy(fName, argv[1]);
     string dir = fName;
 
@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
     int chunknum = strtol(chunknumber, NULL, 10);
 
     char *numin = new char[80];
-    int similiar = strtol(numin, NULL, 10);
+    int similar = strtol(numin, NULL, 10);
 
 //    string dir = string("sm_doc_set");
     vector<string> files = vector<string>();
@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
     int key;
     Hash x;
     x.HashMake(14,files.size());
+    x.MatchTable(files.size());
     vector<int> *hashl[10007];
 
     for (unsigned int i = 0;i < files.size();i++) {
@@ -69,8 +70,8 @@ int main(int argc, char *argv[])
         inFile.close();
 
     }
-    x.display();
-//    x.Match(similar, files.size());
+//    x.display();
+    x.Match(similar, files.size());
 //    delete[] fName;
 //    delete[] chunknumber;
 //    delete[] numin;

@@ -4,6 +4,7 @@
 
 #include "hash.h"
 #include "chunk.h"
+
 using namespace std;
 
 Hash::Hash() {
@@ -73,27 +74,26 @@ void Hash::display() {
 void Hash::Match(int sim, int files) {
     vector<int>::iterator j;
     vector<int>::iterator l;
-    int k = 0;
+    int m = 0;
+    int temp;
     for(int i = 0; i < M; i++) {
-        k = 0;
+        m = 0;
 
         for (j = hashl[i].begin(); j != hashl[i].end(); j++) {
-            for(l = hashl[i].begin(); l != hashl[i].end(); l++){
-                for(int x = k+1; x < files; x++){
-                    if(hashl[i].at(x) != hashl[i].at(k)){
-                        matches[x][k] +=1;
-                    }
-                }
+               temp = hashl[i].at(m);
+               m++;
+               for(l = hashl[i].begin() + m; l != hashl[i].end(); l++){
+                   if(temp != *l){
+                       matches[temp][*l] += 1;
+                   }
+               }
             }
-            k++;
         }
-
-    }
 
     for(int i = 0; i < files; i++){
         for(int y = i+1; y < files; y++) {
             if (matches[i][y] >= sim) {
-                cout << matches[i][y] << "matches :" << i << " " << y <<endl;
+                cout << matches[i][y] << "matches :" << files << " " << y <<endl;
             }
         }
     }
